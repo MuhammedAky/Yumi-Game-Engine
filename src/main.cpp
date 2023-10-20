@@ -2,26 +2,15 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 
+#include "shader.hpp"
+#include "file.hpp"
+
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-const char* vertexShaderSource = R"(
-#version 330 core
-layout(location = 0) in vec3 aPos;
-uniform float size;\n
-void main() {
-    gl_Position = vec4(size * aPos.x, size * aPos.y, size * aPos.z, 1.0);
-}
-)";
+#include <iostream>
 
-const char* fragmentShaderSource = R"(
-#version 330 core
-out vec4 FragColor;
-uniform vec4 color;\n
-void main() {
-    FragColor = color;\n
-}
-)";
+static yumi::Shader* shader;
 
 int main() {
     glfwInit();
@@ -43,25 +32,13 @@ int main() {
 
     glViewport(0, 0, 800, 600);
 
-    // Vertex Shader
-    unsigned int vertexShader;
-    vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-    glCompileShader(vertexShader);
 
-    // Fragment Shader
-    unsigned int fragmentShader;
-    fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-    glCompileShader(fragmentShader);
+    shader = new yumi::Shader(
+        yumi::ReadFile("shaders/default.vert"),
+        yumi::ReadFile("shaders/default.frag")
+    );
 
-    // Shader Program
-    unsigned int shaderProgram;
-    shaderProgram = glCreateProgram();
-    glAttachShader(shaderProgram, vertexShader);
-    glAttachShader(shaderProgram, fragmentShader);
-    glLinkProgram(shaderProgram);
-    glUseProgram(shaderProgram);
+    shader->use();
 
     // Vertex Data
     float vertices[] = {
@@ -101,7 +78,7 @@ int main() {
         ImGui::NewFrame();
 
         if (drawTriangle) {
-            glUseProgram(shaderProgram);
+            shader->use();
             glBindVertexArray(VAO);
             glDrawArrays(GL_TRIANGLES, 0, 3);
         }
@@ -114,14 +91,13 @@ int main() {
         ImGui::End();
 
         // Get the locations of the size and color uniform variables
-        int sizeLocation = glGetUniformLocation(shaderProgram, "size");
-        int colorLocation = glGetUniformLocation(shaderProgram, "color");
+        int sizeLocation = shader->get_uniform_location("size");
+        int colorLocation = shader->get_uniform_location("color");
 
-        // Then, in your while loop:
-
-        glUseProgram(shaderProgram);
         glUniform1f(sizeLocation, size);
         glUniform4f(colorLocation, color[0], color[1], color[2], color[3]);
+
+        shader->use();
 
         ImGui::Render();
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -136,8 +112,8 @@ int main() {
 
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-    glDeleteProgram(shaderProgram);
 
+    shader->destroy();
     glfwTerminate();
     return 0;
 }
