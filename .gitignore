@@ -1,0 +1,80 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Folders
+__pycache__/
+bin/
+x64/
+.vs/
+.vs
+build/
+lib/
+logs/
+temp/
+.vscode/
+.idea/
+*.xcodeproj/
+*.xcworkspace/
+.clangd/
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ImGui generated files
+imgui.ini
+
+# Ignore the build and output directories
+output/
+output64/
+Release/
+Debug/
+
+# Ignore compiled Python files
+__pycache__/
+*.pyc
+
+# Ignore compiled Java files
+*.class
+
+# Ignore node_modules for Node.js projects
+node_modules/
+
+# Visual Studio Code settings
+.vscode/
+
+# Logs
+logs/
