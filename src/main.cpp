@@ -69,6 +69,7 @@ int main() {
 
     float size = 1.0f;
     float color[4] = { 0.8f, 0.3f, 0.02f, 1.0f };
+    float coords[3] = { 0.0f, 0.0f, 0.0f };
 
     while (!glfwWindowShouldClose(window)) {
         glClear(GL_COLOR_BUFFER_BIT);
@@ -78,23 +79,28 @@ int main() {
         ImGui::NewFrame();
 
         if (drawTriangle) {
-            shader->use();
             glBindVertexArray(VAO);
             glDrawArrays(GL_TRIANGLES, 0, 3);
+            shader->use();
         }
 
         ImGui::Begin("Test Windowww");
         ImGui::Text("Hello Wooorrlldd");
         ImGui::Checkbox("Draw Triangle", &drawTriangle);
         ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
+        ImGui::SliderFloat("X Coord", &coords[0], -0.5f, 0.5f);
+        ImGui::SliderFloat("Y Coord", &coords[1], -0.5f, 0.5f);
+        ImGui::SliderFloat("Z Coord", &coords[2], -0.5f, 0.5f);
         ImGui::ColorEdit4("Color", color);
         ImGui::End();
 
         // Get the locations of the size and color uniform variables
         int sizeLocation = shader->get_uniform_location("size");
+        int coordsLocation = shader->get_uniform_location("coords");
         int colorLocation = shader->get_uniform_location("color");
 
         glUniform1f(sizeLocation, size);
+        glUniform3f(coordsLocation, coords[0], coords[1], coords[2]);
         glUniform4f(colorLocation, color[0], color[1], color[2], color[3]);
 
         shader->use();
