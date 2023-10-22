@@ -31,6 +31,10 @@ namespace yumi {
         destroy();
     }
 
+    int Shader::get_program_id() {
+        return this->id;
+    }
+
     void Shader::check_program() {
         int status;
         char log[1024];

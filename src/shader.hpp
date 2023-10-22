@@ -20,5 +20,6 @@ namespace yumi {
 		int get_uniform_location(const char* name);
 		void use();
 		void destroy();
+		int get_program_id();
 	};
 }

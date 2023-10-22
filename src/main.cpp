@@ -8,9 +8,15 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include<glm/glm.hpp>
+#include<glm/gtc/matrix_transform.hpp>
+#include<glm/gtc/type_ptr.hpp>
+
 #include <iostream>
 
 static yumi::Shader* shader;
+int WIDTH   = 800;
+int HEIGHT  = 600;
 
 int main() {
     glfwInit();
@@ -18,7 +24,7 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Triangle", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Square", NULL, NULL);
     if (!window) {
         glfwTerminate();
         return -1;
@@ -30,7 +36,7 @@ int main() {
         return -1;
     }
 
-    glViewport(0, 0, 800, 600);
+    glViewport(0, 0, WIDTH, HEIGHT);
 
 
     shader = new yumi::Shader(
@@ -42,9 +48,12 @@ int main() {
 
     // Vertex Data
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f,
+        -0.5f, 0.5f, 0.0f,
+         -0.5f, -0.5f, 0.0f,
+         0.5f,  0.5f, 0.0f,
+         0.5f, 0.5f, 0.0f,
          0.5f, -0.5f, 0.0f,
-         0.0f,  0.5f, 0.0f
+         -0.5f,  -0.5f, 0.0f
     };
 
     unsigned int VBO, VAO;
@@ -65,7 +74,11 @@ int main() {
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    bool drawTriangle = true;
+    bool drawSquare = true;
+
+    // Variables that help the rotation of the Square
+    float rotation = 0.0f;
+    double prevTime = glfwGetTime();
 
     float size = 1.0f;
     float color[4] = { 0.8f, 0.3f, 0.02f, 1.0f };
@@ -78,15 +91,40 @@ int main() {
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        if (drawTriangle) {
+        // Simple timer
+        double crntTime = glfwGetTime();
+        if (crntTime - prevTime >= 1 / 60)
+        {
+            rotation += 0.01f;
+            prevTime = crntTime;
+        }
+
+        // Initializes matrices so they are not the null matrix
+        glm::mat4 model     = glm::mat4(1.0f);
+        glm::mat4 view      = glm::mat4(1.0f);
+        glm::mat4 proj      = glm::mat4(1.0f);
+
+        model = glm::rotate(model, glm::radians(rotation), glm::vec3(0.0f, 1.0f, 0.0f));
+        view = glm::translate(view, glm::vec3(0.0f, -0.5f, -2.0f));
+        proj = glm::perspective(glm::radians(45.0f), (float)WIDTH / HEIGHT, 0.1f, 100.0f);
+        
+        // Outputs the matrices into the Vertex Shader
+        int modelLoc = glGetUniformLocation(shader->get_program_id(), "model");
+        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+        int viewLoc = glGetUniformLocation(shader->get_program_id(), "view");
+        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+        int projLoc = glGetUniformLocation(shader->get_program_id(), "proj");
+        glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
+
+        if (drawSquare) {
             glBindVertexArray(VAO);
-            glDrawArrays(GL_TRIANGLES, 0, 3);
+            glDrawArrays(GL_TRIANGLES, 0, 6);
             shader->use();
         }
 
         ImGui::Begin("Test Windowww");
         ImGui::Text("Hello Wooorrlldd");
-        ImGui::Checkbox("Draw Triangle", &drawTriangle);
+        ImGui::Checkbox("Draw Square", &drawSquare);
         ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
         ImGui::SliderFloat("X Coord", &coords[0], -0.5f, 0.5f);
         ImGui::SliderFloat("Y Coord", &coords[1], -0.5f, 0.5f);
