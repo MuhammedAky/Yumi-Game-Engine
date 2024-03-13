@@ -24,7 +24,7 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Square", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(WIDTH, HEIGHT, "Yumi Game Engine", NULL, NULL);
     if (!window) {
         glfwTerminate();
         return -1;
@@ -74,7 +74,7 @@ int main() {
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 330");
 
-    bool drawSquare = true;
+    bool draw = true;
 
     // Variables that help the rotation of the Square
     float rotation = 0.0f;
@@ -116,7 +116,7 @@ int main() {
         int projLoc = glGetUniformLocation(shader->get_program_id(), "proj");
         glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(proj));
 
-        if (drawSquare) {
+        if (draw) {
             glBindVertexArray(VAO);
             glDrawArrays(GL_TRIANGLES, 0, 6);
             shader->use();
@@ -124,7 +124,7 @@ int main() {
 
         ImGui::Begin("Test Windowww");
         ImGui::Text("Hello Wooorrlldd");
-        ImGui::Checkbox("Draw Square", &drawSquare);
+        ImGui::Checkbox("Draw Square", &draw);
         ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
         ImGui::SliderFloat("X Coord", &coords[0], -0.5f, 0.5f);
         ImGui::SliderFloat("Y Coord", &coords[1], -0.5f, 0.5f);
