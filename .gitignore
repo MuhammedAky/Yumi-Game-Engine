@@ -27,11 +27,11 @@
 # Folders
 __pycache__/
 bin/
+bin-int/
 x64/
 .vs/
 .vs
 build/
-lib/
 logs/
 temp/
 .vscode/
