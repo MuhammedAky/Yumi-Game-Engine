@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>16.0</VCProjectVersion>
+    <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4004cac4-9fe8-41a3-bea1-ac4d63da985f}</ProjectGuid>
+    <ProjectGuid>{4fbf1128-d7c3-4ca1-bf52-83988789c133}</ProjectGuid>
     <RootNamespace>Yumi</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -71,15 +71,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>C:\Users\Dragon\Desktop\Yumi\include</IncludePath>
-    <LibraryPath>C:\Users\Dragon\Desktop\Yumi\lib;$(LibraryPath)</LibraryPath>
-    <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)bin-int\</IntDir>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(SolutionDir)bin-int\</IntDir>
-    <IncludePath>C:\Users\Dragon\Desktop\Yumi\include</IncludePath>
+    <OutDir>$(SolutionDir)/bin</OutDir>
+    <IntDir>$(SolutionDir)/bin-int</IntDir>
+    <IncludePath>$(SolutionDir)\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -91,8 +86,6 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Dragon\Desktop\Yumi\lib\GLFW;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -121,8 +114,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Dragon\Desktop\Yumi\lib\GLFW;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GLFW/glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -142,6 +134,199 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="include\glm\detail\glm.cpp" />
+    <ClCompile Include="include\imgui\imgui.cpp" />
+    <ClCompile Include="include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="include\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\file.cpp" />
+    <ClCompile Include="src\glad.c" />
+    <ClCompile Include="src\glad.cpp" />
+    <ClCompile Include="src\indexBuffer.cpp" />
+    <ClCompile Include="src\input.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\mesh.cpp" />
+    <ClCompile Include="src\model.cpp" />
+    <ClCompile Include="src\shader.cpp" />
+    <ClCompile Include="src\texture.cpp" />
+    <ClCompile Include="src\transform.cpp" />
+    <ClCompile Include="src\vendor\glad\glad.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_demo.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_draw.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_tables.cpp" />
+    <ClCompile Include="src\vendor\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="src\vendor\stb\stb.cpp" />
+    <ClCompile Include="src\vertexArray.cpp" />
+    <ClCompile Include="src\vertexBuffer.cpp" />
+    <ClCompile Include="src\window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="imgui.ini" />
+    <None Include="include\glm\detail\func_common.inl" />
+    <None Include="include\glm\detail\func_common_simd.inl" />
+    <None Include="include\glm\detail\func_exponential.inl" />
+    <None Include="include\glm\detail\func_exponential_simd.inl" />
+    <None Include="include\glm\detail\func_geometric.inl" />
+    <None Include="include\glm\detail\func_geometric_simd.inl" />
+    <None Include="include\glm\detail\func_integer.inl" />
+    <None Include="include\glm\detail\func_integer_simd.inl" />
+    <None Include="include\glm\detail\func_matrix.inl" />
+    <None Include="include\glm\detail\func_matrix_simd.inl" />
+    <None Include="include\glm\detail\func_packing.inl" />
+    <None Include="include\glm\detail\func_packing_simd.inl" />
+    <None Include="include\glm\detail\func_trigonometric.inl" />
+    <None Include="include\glm\detail\func_trigonometric_simd.inl" />
+    <None Include="include\glm\detail\func_vector_relational.inl" />
+    <None Include="include\glm\detail\func_vector_relational_simd.inl" />
+    <None Include="include\glm\detail\type_half.inl" />
+    <None Include="include\glm\detail\type_mat2x2.inl" />
+    <None Include="include\glm\detail\type_mat2x3.inl" />
+    <None Include="include\glm\detail\type_mat2x4.inl" />
+    <None Include="include\glm\detail\type_mat3x2.inl" />
+    <None Include="include\glm\detail\type_mat3x3.inl" />
+    <None Include="include\glm\detail\type_mat3x4.inl" />
+    <None Include="include\glm\detail\type_mat4x2.inl" />
+    <None Include="include\glm\detail\type_mat4x3.inl" />
+    <None Include="include\glm\detail\type_mat4x4.inl" />
+    <None Include="include\glm\detail\type_mat4x4_simd.inl" />
+    <None Include="include\glm\detail\type_quat.inl" />
+    <None Include="include\glm\detail\type_quat_simd.inl" />
+    <None Include="include\glm\detail\type_vec1.inl" />
+    <None Include="include\glm\detail\type_vec2.inl" />
+    <None Include="include\glm\detail\type_vec3.inl" />
+    <None Include="include\glm\detail\type_vec4.inl" />
+    <None Include="include\glm\detail\type_vec4_simd.inl" />
+    <None Include="include\glm\ext\matrix_clip_space.inl" />
+    <None Include="include\glm\ext\matrix_common.inl" />
+    <None Include="include\glm\ext\matrix_projection.inl" />
+    <None Include="include\glm\ext\matrix_relational.inl" />
+    <None Include="include\glm\ext\matrix_transform.inl" />
+    <None Include="include\glm\ext\quaternion_common.inl" />
+    <None Include="include\glm\ext\quaternion_common_simd.inl" />
+    <None Include="include\glm\ext\quaternion_exponential.inl" />
+    <None Include="include\glm\ext\quaternion_geometric.inl" />
+    <None Include="include\glm\ext\quaternion_relational.inl" />
+    <None Include="include\glm\ext\quaternion_transform.inl" />
+    <None Include="include\glm\ext\quaternion_trigonometric.inl" />
+    <None Include="include\glm\ext\scalar_common.inl" />
+    <None Include="include\glm\ext\scalar_constants.inl" />
+    <None Include="include\glm\ext\scalar_integer.inl" />
+    <None Include="include\glm\ext\scalar_packing.inl" />
+    <None Include="include\glm\ext\scalar_relational.inl" />
+    <None Include="include\glm\ext\scalar_ulp.inl" />
+    <None Include="include\glm\ext\vector_common.inl" />
+    <None Include="include\glm\ext\vector_integer.inl" />
+    <None Include="include\glm\ext\vector_packing.inl" />
+    <None Include="include\glm\ext\vector_relational.inl" />
+    <None Include="include\glm\ext\vector_ulp.inl" />
+    <None Include="include\glm\gtc\bitfield.inl" />
+    <None Include="include\glm\gtc\color_space.inl" />
+    <None Include="include\glm\gtc\constants.inl" />
+    <None Include="include\glm\gtc\epsilon.inl" />
+    <None Include="include\glm\gtc\integer.inl" />
+    <None Include="include\glm\gtc\matrix_access.inl" />
+    <None Include="include\glm\gtc\matrix_inverse.inl" />
+    <None Include="include\glm\gtc\matrix_transform.inl" />
+    <None Include="include\glm\gtc\noise.inl" />
+    <None Include="include\glm\gtc\packing.inl" />
+    <None Include="include\glm\gtc\quaternion.inl" />
+    <None Include="include\glm\gtc\quaternion_simd.inl" />
+    <None Include="include\glm\gtc\random.inl" />
+    <None Include="include\glm\gtc\reciprocal.inl" />
+    <None Include="include\glm\gtc\round.inl" />
+    <None Include="include\glm\gtc\type_precision.inl" />
+    <None Include="include\glm\gtc\type_ptr.inl" />
+    <None Include="include\glm\gtc\ulp.inl" />
+    <None Include="include\glm\gtx\associated_min_max.inl" />
+    <None Include="include\glm\gtx\bit.inl" />
+    <None Include="include\glm\gtx\closest_point.inl" />
+    <None Include="include\glm\gtx\color_encoding.inl" />
+    <None Include="include\glm\gtx\color_space.inl" />
+    <None Include="include\glm\gtx\color_space_YCoCg.inl" />
+    <None Include="include\glm\gtx\common.inl" />
+    <None Include="include\glm\gtx\compatibility.inl" />
+    <None Include="include\glm\gtx\component_wise.inl" />
+    <None Include="include\glm\gtx\dual_quaternion.inl" />
+    <None Include="include\glm\gtx\easing.inl" />
+    <None Include="include\glm\gtx\euler_angles.inl" />
+    <None Include="include\glm\gtx\extend.inl" />
+    <None Include="include\glm\gtx\extended_min_max.inl" />
+    <None Include="include\glm\gtx\exterior_product.inl" />
+    <None Include="include\glm\gtx\fast_exponential.inl" />
+    <None Include="include\glm\gtx\fast_square_root.inl" />
+    <None Include="include\glm\gtx\fast_trigonometry.inl" />
+    <None Include="include\glm\gtx\float_notmalize.inl" />
+    <None Include="include\glm\gtx\functions.inl" />
+    <None Include="include\glm\gtx\gradient_paint.inl" />
+    <None Include="include\glm\gtx\handed_coordinate_space.inl" />
+    <None Include="include\glm\gtx\hash.inl" />
+    <None Include="include\glm\gtx\integer.inl" />
+    <None Include="include\glm\gtx\intersect.inl" />
+    <None Include="include\glm\gtx\io.inl" />
+    <None Include="include\glm\gtx\log_base.inl" />
+    <None Include="include\glm\gtx\matrix_cross_product.inl" />
+    <None Include="include\glm\gtx\matrix_decompose.inl" />
+    <None Include="include\glm\gtx\matrix_factorisation.inl" />
+    <None Include="include\glm\gtx\matrix_interpolation.inl" />
+    <None Include="include\glm\gtx\matrix_major_storage.inl" />
+    <None Include="include\glm\gtx\matrix_operation.inl" />
+    <None Include="include\glm\gtx\matrix_query.inl" />
+    <None Include="include\glm\gtx\matrix_transform_2d.inl" />
+    <None Include="include\glm\gtx\mixed_product.inl" />
+    <None Include="include\glm\gtx\norm.inl" />
+    <None Include="include\glm\gtx\normal.inl" />
+    <None Include="include\glm\gtx\normalize_dot.inl" />
+    <None Include="include\glm\gtx\number_precision.inl" />
+    <None Include="include\glm\gtx\optimum_pow.inl" />
+    <None Include="include\glm\gtx\orthonormalize.inl" />
+    <None Include="include\glm\gtx\perpendicular.inl" />
+    <None Include="include\glm\gtx\polar_coordinates.inl" />
+    <None Include="include\glm\gtx\projection.inl" />
+    <None Include="include\glm\gtx\quaternion.inl" />
+    <None Include="include\glm\gtx\raw_data.inl" />
+    <None Include="include\glm\gtx\rotate_normalized_axis.inl" />
+    <None Include="include\glm\gtx\rotate_vector.inl" />
+    <None Include="include\glm\gtx\scalar_relational.inl" />
+    <None Include="include\glm\gtx\spline.inl" />
+    <None Include="include\glm\gtx\std_based_type.inl" />
+    <None Include="include\glm\gtx\string_cast.inl" />
+    <None Include="include\glm\gtx\texture.inl" />
+    <None Include="include\glm\gtx\transform.inl" />
+    <None Include="include\glm\gtx\transform2.inl" />
+    <None Include="include\glm\gtx\type_aligned.inl" />
+    <None Include="include\glm\gtx\type_trait.inl" />
+    <None Include="include\glm\gtx\vector_angle.inl" />
+    <None Include="include\glm\gtx\vector_query.inl" />
+    <None Include="include\glm\gtx\wrap.inl" />
+    <None Include="res\models\bunny\scene.bin" />
+    <None Include="res\models\crow\scene.bin" />
+    <None Include="res\models\grindstone\scene.bin" />
+    <None Include="res\models\map\scene.bin" />
+    <None Include="res\models\scroll\scene.bin" />
+    <None Include="res\models\statue\scene.bin" />
+    <None Include="res\models\sword\scene.bin" />
+    <None Include="res\models\trees\scene.bin" />
+    <None Include="shaders\default.frag" />
+    <None Include="shaders\default.vert" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\icon\icon.png" />
+    <Image Include="res\textures\planks\planks.png" />
+    <Image Include="res\textures\planks\planks_spec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\GLFW\glfw3.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\entt\entt.hpp" />
     <ClInclude Include="include\glad\glad.h" />
     <ClInclude Include="include\GLFW\glfw3.h" />
     <ClInclude Include="include\GLFW\glfw3native.h" />
@@ -436,169 +621,25 @@
     <ClInclude Include="include\imgui\imstb_rectpack.h" />
     <ClInclude Include="include\imgui\imstb_textedit.h" />
     <ClInclude Include="include\imgui\imstb_truetype.h" />
-    <ClInclude Include="include\json\json.hpp" />
     <ClInclude Include="include\KHR\khrplatform.h" />
+    <ClInclude Include="include\nlohmann\json.hpp" />
     <ClInclude Include="include\stb\stb_image.h" />
-    <ClInclude Include="src\file.hpp" />
-    <ClInclude Include="src\shader.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include=".gitignore" />
-    <None Include="include\glm\detail\func_common.inl" />
-    <None Include="include\glm\detail\func_common_simd.inl" />
-    <None Include="include\glm\detail\func_exponential.inl" />
-    <None Include="include\glm\detail\func_exponential_simd.inl" />
-    <None Include="include\glm\detail\func_geometric.inl" />
-    <None Include="include\glm\detail\func_geometric_simd.inl" />
-    <None Include="include\glm\detail\func_integer.inl" />
-    <None Include="include\glm\detail\func_integer_simd.inl" />
-    <None Include="include\glm\detail\func_matrix.inl" />
-    <None Include="include\glm\detail\func_matrix_simd.inl" />
-    <None Include="include\glm\detail\func_packing.inl" />
-    <None Include="include\glm\detail\func_packing_simd.inl" />
-    <None Include="include\glm\detail\func_trigonometric.inl" />
-    <None Include="include\glm\detail\func_trigonometric_simd.inl" />
-    <None Include="include\glm\detail\func_vector_relational.inl" />
-    <None Include="include\glm\detail\func_vector_relational_simd.inl" />
-    <None Include="include\glm\detail\type_half.inl" />
-    <None Include="include\glm\detail\type_mat2x2.inl" />
-    <None Include="include\glm\detail\type_mat2x3.inl" />
-    <None Include="include\glm\detail\type_mat2x4.inl" />
-    <None Include="include\glm\detail\type_mat3x2.inl" />
-    <None Include="include\glm\detail\type_mat3x3.inl" />
-    <None Include="include\glm\detail\type_mat3x4.inl" />
-    <None Include="include\glm\detail\type_mat4x2.inl" />
-    <None Include="include\glm\detail\type_mat4x3.inl" />
-    <None Include="include\glm\detail\type_mat4x4.inl" />
-    <None Include="include\glm\detail\type_mat4x4_simd.inl" />
-    <None Include="include\glm\detail\type_quat.inl" />
-    <None Include="include\glm\detail\type_quat_simd.inl" />
-    <None Include="include\glm\detail\type_vec1.inl" />
-    <None Include="include\glm\detail\type_vec2.inl" />
-    <None Include="include\glm\detail\type_vec3.inl" />
-    <None Include="include\glm\detail\type_vec4.inl" />
-    <None Include="include\glm\detail\type_vec4_simd.inl" />
-    <None Include="include\glm\ext\matrix_clip_space.inl" />
-    <None Include="include\glm\ext\matrix_common.inl" />
-    <None Include="include\glm\ext\matrix_projection.inl" />
-    <None Include="include\glm\ext\matrix_relational.inl" />
-    <None Include="include\glm\ext\matrix_transform.inl" />
-    <None Include="include\glm\ext\quaternion_common.inl" />
-    <None Include="include\glm\ext\quaternion_common_simd.inl" />
-    <None Include="include\glm\ext\quaternion_exponential.inl" />
-    <None Include="include\glm\ext\quaternion_geometric.inl" />
-    <None Include="include\glm\ext\quaternion_relational.inl" />
-    <None Include="include\glm\ext\quaternion_transform.inl" />
-    <None Include="include\glm\ext\quaternion_trigonometric.inl" />
-    <None Include="include\glm\ext\scalar_common.inl" />
-    <None Include="include\glm\ext\scalar_constants.inl" />
-    <None Include="include\glm\ext\scalar_integer.inl" />
-    <None Include="include\glm\ext\scalar_packing.inl" />
-    <None Include="include\glm\ext\scalar_relational.inl" />
-    <None Include="include\glm\ext\scalar_ulp.inl" />
-    <None Include="include\glm\ext\vector_common.inl" />
-    <None Include="include\glm\ext\vector_integer.inl" />
-    <None Include="include\glm\ext\vector_packing.inl" />
-    <None Include="include\glm\ext\vector_relational.inl" />
-    <None Include="include\glm\ext\vector_ulp.inl" />
-    <None Include="include\glm\gtc\bitfield.inl" />
-    <None Include="include\glm\gtc\color_space.inl" />
-    <None Include="include\glm\gtc\constants.inl" />
-    <None Include="include\glm\gtc\epsilon.inl" />
-    <None Include="include\glm\gtc\integer.inl" />
-    <None Include="include\glm\gtc\matrix_access.inl" />
-    <None Include="include\glm\gtc\matrix_inverse.inl" />
-    <None Include="include\glm\gtc\matrix_transform.inl" />
-    <None Include="include\glm\gtc\noise.inl" />
-    <None Include="include\glm\gtc\packing.inl" />
-    <None Include="include\glm\gtc\quaternion.inl" />
-    <None Include="include\glm\gtc\quaternion_simd.inl" />
-    <None Include="include\glm\gtc\random.inl" />
-    <None Include="include\glm\gtc\reciprocal.inl" />
-    <None Include="include\glm\gtc\round.inl" />
-    <None Include="include\glm\gtc\type_precision.inl" />
-    <None Include="include\glm\gtc\type_ptr.inl" />
-    <None Include="include\glm\gtc\ulp.inl" />
-    <None Include="include\glm\gtx\associated_min_max.inl" />
-    <None Include="include\glm\gtx\bit.inl" />
-    <None Include="include\glm\gtx\closest_point.inl" />
-    <None Include="include\glm\gtx\color_encoding.inl" />
-    <None Include="include\glm\gtx\color_space.inl" />
-    <None Include="include\glm\gtx\color_space_YCoCg.inl" />
-    <None Include="include\glm\gtx\common.inl" />
-    <None Include="include\glm\gtx\compatibility.inl" />
-    <None Include="include\glm\gtx\component_wise.inl" />
-    <None Include="include\glm\gtx\dual_quaternion.inl" />
-    <None Include="include\glm\gtx\easing.inl" />
-    <None Include="include\glm\gtx\euler_angles.inl" />
-    <None Include="include\glm\gtx\extend.inl" />
-    <None Include="include\glm\gtx\extended_min_max.inl" />
-    <None Include="include\glm\gtx\exterior_product.inl" />
-    <None Include="include\glm\gtx\fast_exponential.inl" />
-    <None Include="include\glm\gtx\fast_square_root.inl" />
-    <None Include="include\glm\gtx\fast_trigonometry.inl" />
-    <None Include="include\glm\gtx\float_notmalize.inl" />
-    <None Include="include\glm\gtx\functions.inl" />
-    <None Include="include\glm\gtx\gradient_paint.inl" />
-    <None Include="include\glm\gtx\handed_coordinate_space.inl" />
-    <None Include="include\glm\gtx\hash.inl" />
-    <None Include="include\glm\gtx\integer.inl" />
-    <None Include="include\glm\gtx\intersect.inl" />
-    <None Include="include\glm\gtx\io.inl" />
-    <None Include="include\glm\gtx\log_base.inl" />
-    <None Include="include\glm\gtx\matrix_cross_product.inl" />
-    <None Include="include\glm\gtx\matrix_decompose.inl" />
-    <None Include="include\glm\gtx\matrix_factorisation.inl" />
-    <None Include="include\glm\gtx\matrix_interpolation.inl" />
-    <None Include="include\glm\gtx\matrix_major_storage.inl" />
-    <None Include="include\glm\gtx\matrix_operation.inl" />
-    <None Include="include\glm\gtx\matrix_query.inl" />
-    <None Include="include\glm\gtx\matrix_transform_2d.inl" />
-    <None Include="include\glm\gtx\mixed_product.inl" />
-    <None Include="include\glm\gtx\norm.inl" />
-    <None Include="include\glm\gtx\normal.inl" />
-    <None Include="include\glm\gtx\normalize_dot.inl" />
-    <None Include="include\glm\gtx\number_precision.inl" />
-    <None Include="include\glm\gtx\optimum_pow.inl" />
-    <None Include="include\glm\gtx\orthonormalize.inl" />
-    <None Include="include\glm\gtx\perpendicular.inl" />
-    <None Include="include\glm\gtx\polar_coordinates.inl" />
-    <None Include="include\glm\gtx\projection.inl" />
-    <None Include="include\glm\gtx\quaternion.inl" />
-    <None Include="include\glm\gtx\raw_data.inl" />
-    <None Include="include\glm\gtx\rotate_normalized_axis.inl" />
-    <None Include="include\glm\gtx\rotate_vector.inl" />
-    <None Include="include\glm\gtx\scalar_relational.inl" />
-    <None Include="include\glm\gtx\spline.inl" />
-    <None Include="include\glm\gtx\std_based_type.inl" />
-    <None Include="include\glm\gtx\string_cast.inl" />
-    <None Include="include\glm\gtx\texture.inl" />
-    <None Include="include\glm\gtx\transform.inl" />
-    <None Include="include\glm\gtx\transform2.inl" />
-    <None Include="include\glm\gtx\type_aligned.inl" />
-    <None Include="include\glm\gtx\type_trait.inl" />
-    <None Include="include\glm\gtx\vector_angle.inl" />
-    <None Include="include\glm\gtx\vector_query.inl" />
-    <None Include="include\glm\gtx\wrap.inl" />
-    <None Include="shaders\default.frag" />
-    <None Include="shaders\default.vert" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="include\glm\detail\glm.cpp" />
-    <ClCompile Include="include\imgui\imgui.cpp" />
-    <ClCompile Include="include\imgui\imgui_demo.cpp" />
-    <ClCompile Include="include\imgui\imgui_draw.cpp" />
-    <ClCompile Include="include\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="include\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="include\imgui\imgui_tables.cpp" />
-    <ClCompile Include="include\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="src\file.cpp" />
-    <ClCompile Include="src\glad.c" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\shader.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="lib\GLFW\glfw3.lib" />
+    <ClInclude Include="include\yumi\camera.hpp" />
+    <ClInclude Include="include\yumi\color.hpp" />
+    <ClInclude Include="include\yumi\constants.hpp" />
+    <ClInclude Include="include\yumi\file.hpp" />
+    <ClInclude Include="include\yumi\indexBuffer.hpp" />
+    <ClInclude Include="include\yumi\input.hpp" />
+    <ClInclude Include="include\yumi\mesh.hpp" />
+    <ClInclude Include="include\yumi\model.hpp" />
+    <ClInclude Include="include\yumi\shader.hpp" />
+    <ClInclude Include="include\yumi\texture.hpp" />
+    <ClInclude Include="include\yumi\transform.hpp" />
+    <ClInclude Include="include\yumi\vertex.hpp" />
+    <ClInclude Include="include\yumi\vertexArray.hpp" />
+    <ClInclude Include="include\yumi\vertexBuffer.hpp" />
+    <ClInclude Include="include\yumi\window.hpp" />
+    <ClInclude Include="include\yumi\yumi.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
